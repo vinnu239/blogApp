@@ -6,10 +6,13 @@ const usePagination = (items, itemsPerPage) => {
 
     // Calculate the indices of the first and last items on the current page
     useEffect(() => {
+        console.log("usepagination data",items);
         const indexOfLastItem = currentPage * itemsPerPage;
         const indexOfFirstItem = indexOfLastItem - itemsPerPage;
         setCurrentItems(items.slice(indexOfFirstItem, indexOfLastItem));
-    }, [currentPage, itemsPerPage]);
+    }, [currentPage, itemsPerPage,items]);
+
+    
     const totalPages = (items.length > 0 ? Math.ceil(items.length / itemsPerPage) : null);
     // Function to handle page change
     const handlePageChange = (pageNumber) => {

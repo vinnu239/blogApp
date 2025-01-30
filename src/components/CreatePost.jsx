@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import {createBlogPosts } from '../Action/Api/Blogapi';
 
 const CreatePost = () => {
     const [title, setTitle] = useState('');
@@ -7,11 +7,8 @@ const CreatePost = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // axios.post('/api/posts', { title, content }).then(response => {
-        //     console.log('Post created:', response.data);
-        // });
-        console.log('Post created:', { title, content });
-        // Add the new post to mock data or send it to the backend
+        const id = Date.now();
+        createBlogPosts({id,title,content});
     };
 
     return (

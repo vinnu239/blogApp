@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import Pagination from './ReusableComp/Pagination';
 import usePagination from './customHook/usePagnation';
+import { getAllPosts } from '../Action/blogaction/BlogAction';
 
 const mockPosts = [
     { id: 1, title: 'First List Post', content: 'This is the content of the first post.' },
@@ -10,19 +11,24 @@ const mockPosts = [
 ];
 
 const BlogList = () => {
-    const [posts] = useState(mockPosts);
+    const posts = useSelector(state => state.blogs.posts);
+    const dispatch = useDispatch();
+
+    console.log(posts);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                dispatch(getAllPosts());
+
+            } catch (error) {
+                console.error('Error fetching data', error);
+            }
+        };
+
+        fetchData();
+    }, []);
     const itemsPerPage = 1;
-    const { currentPage, currentItems, handlePageChange, totalPages } = usePagination(mockPosts, itemsPerPage);
-
-    // below code uis useful for api
-    // const [posts, setPosts] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get('/api/posts').then(response => {
-    //         setPosts(response.data);
-    //     });
-    // }, []);
-
+    const { currentPage, currentItems, handlePageChange, totalPages } = usePagination(posts, itemsPerPage);
     return (
         <div>
             {currentItems.map(post => (
