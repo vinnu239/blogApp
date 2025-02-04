@@ -19,7 +19,7 @@ export const createBlogPosts = async (blogPost) => {
 
     try {
         const response = await axios.post(`${API_URL}/create`, blogPost);
-        console.log('Blog post created:', response.data);
+       return response.data;
     } catch (error) {
         console.error('There was an error creating the blog post!', error);
     }

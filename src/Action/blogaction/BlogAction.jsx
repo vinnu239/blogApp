@@ -1,5 +1,5 @@
 import { getAllBlogPosts, createBlogPosts } from "../Api/Blogapi"
-import { setPosts } from "../../slices/blogSlice";
+import { setPosts,addPost } from "../../slices/blogSlice";
 
 export const getAllPosts = () => async (dispatch) => {
     try {
@@ -10,6 +10,13 @@ export const getAllPosts = () => async (dispatch) => {
     }
 
 
-}
+};
 
-export const createBlogPost = () => { }
+export const createBlogPost = (blogPost) => async (dispatch) => {
+    try {
+        const response = await createBlogPosts(blogPost);
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import {createBlogPosts } from '../Action/Api/Blogapi';
+import { useDispatch } from 'react-redux';
+// import {createBlogPosts,getAllBlogPosts } from '../Action/Api/Blogapi';
+import { createBlogPost, getAllPosts } from '../Action/blogaction/BlogAction';
 
 const CreatePost = () => {
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const id = Date.now();
-        createBlogPosts({id,title,content});
+        dispatch(createBlogPost({ id, title, content }));
+        dispatch(getAllPosts());
     };
 
     return (

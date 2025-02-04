@@ -5,16 +5,14 @@ import Pagination from './ReusableComp/Pagination';
 import usePagination from './customHook/usePagnation';
 import { getAllPosts } from '../Action/blogaction/BlogAction';
 
-const mockPosts = [
-    { id: 1, title: 'First List Post', content: 'This is the content of the first post.' },
-    { id: 2, title: 'Second List Post', content: 'This is the content of the second post.' },
-];
+// const mockPosts = [
+//     { id: 1, title: 'First List Post', content: 'This is the content of the first post.' },
+//     { id: 2, title: 'Second List Post', content: 'This is the content of the second post.' },
+// ];
 
 const BlogList = () => {
     const posts = useSelector(state => state.blogs.posts);
     const dispatch = useDispatch();
-
-    console.log(posts);
     useEffect(() => {
         const fetchData = async () => {
             try {
