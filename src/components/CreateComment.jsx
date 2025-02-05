@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+// import axios from 'axios';
+import { createComment, getAllCommentsByPostID } from '../Action/blogaction/BlogAction';
 
 const CreateComment = ({ postId }) => {
+
+    const dispatch = useDispatch();
     const [content, setContent] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Comment created:', { postId, content });
-        // axios.post(`/api/posts/${postId}/comments`, { content }).then(response => {
-        //     console.log('Comment created:', response.data);
-        // });
+        await dispatch(createComment({ postId, content }));
+        await dispatch(getAllCommentsByPostID(postId));
+        setContent('');
     };
 
     return (

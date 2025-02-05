@@ -10,9 +10,10 @@ const CreatePost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const id = Date.now();
-        dispatch(createBlogPost({ id, title, content }));
+        await dispatch(createBlogPost({ title, content }));
         dispatch(getAllPosts());
+        setTitle('');
+        setContent('');
     };
 
     return (

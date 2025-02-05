@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
+import { getAllCommentsByPostID } from '../Action/blogaction/BlogAction';
 
-const mockComments = {
-    1: [{ id: 1, content: 'First comment on first post' }],
-    2: [{ id: 2, content: 'First comment on second post' }],
-};
 
 const CommentList = ({ postId }) => {
-    const [comments, setComments] = useState([]);
+    const comments = useSelector(state => state.blogs.comments);
+    const dispatch = useDispatch();
+    // const [comments, setComments] = useState([]);
+
 
     useEffect(() => {
-        setComments(mockComments[postId] || []);
-    }, [postId]);
+        const fetchComments = async () => {
+            try {
+                dispatch(getAllCommentsByPostID(postId));
 
-    // useEffect(() => {
-    //     axios.get(`/api/posts/${postId}/comments`).then(response => {
-    //         setComments(response.data);
-    //     });
-    // }, [postId]);
+            } catch (error) {
+                console.error('Error fetching data', error);
+
+            }
+        };
+        fetchComments();
+
+    }, [postId])
 
     return (
         <div>
