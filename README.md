@@ -1,9 +1,14 @@
 # blogApp
 Blogapp using Reactjs,Java and SQL
 
-#Aws secret access key username and key created under IAM user for workflows
+#Create new Aws secret access keys inside IAM
 
-Acess key : AKIAWECSIFYIXOS55SCC  
-SecretAcess key : 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
+navigate to IAM user 
+slect the IAM yser(if yiu want to use same IAM user if already exists) 
+click on the that IAM user and naviga te security details 
+Under "Access keys", click on "Create access key".
+Choose the appropriate option for how you will use the access key (e.g., Command Line Interface (CLI)).
+Optionally, add a tag to help identify the key.
+Click "Next" and then "Create access key".
 
 
