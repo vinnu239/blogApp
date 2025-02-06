@@ -1,5 +1,5 @@
-import { getAllBlogPosts, createBlogPosts,getPostById,CreateComment,getAllComment } from "../Api/Blogapi"
-import { setPosts,setComments} from "../../slices/blogSlice";
+import { getAllBlogPosts, createBlogPosts, getPostById, CreateComment, getAllComment } from "../Api/Blogapi"
+import { setPosts, setComments } from "../../slices/blogSlice";
 
 export const getAllPosts = () => async (dispatch) => {
     try {
@@ -12,13 +12,13 @@ export const getAllPosts = () => async (dispatch) => {
 
 };
 
-export const getAllCommentsByPostID=(postId)=>async(dispatch)=>{
+export const getAllCommentsByPostID = (postId) => async (dispatch) => {
     try {
         const response = await getAllComment(postId);
-        console.log(response,"in blogaction");
+        console.log(response, "in blogaction");
         dispatch(setComments(response));
     } catch (error) {
-        
+
     }
 }
 
@@ -34,7 +34,7 @@ export const createBlogPost = (blogPost) => async (dispatch) => {
 export const getPostId = (id) => async (dispatch) => {
     try {
         const response = await getPostById(id);
-       return response;
+        return response;
     } catch (error) {
         console.log(error);
     }
@@ -42,7 +42,7 @@ export const getPostId = (id) => async (dispatch) => {
 
 export const createComment = (comment) => async (dispatch) => {
     try {
-        const response = await CreateComment(comment);
+        await CreateComment(comment);
     } catch (error) {
         console.log(error);
     }

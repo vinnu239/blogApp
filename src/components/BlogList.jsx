@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Pagination from './ReusableComp/Pagination';
@@ -24,7 +24,7 @@ const BlogList = () => {
         };
 
         fetchData();
-    }, []);
+    },[dispatch]);
     const itemsPerPage = 1;
     const { currentPage, currentItems, handlePageChange, totalPages } = usePagination(posts, itemsPerPage);
     return (
